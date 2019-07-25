@@ -32,9 +32,9 @@ The skeletal formula of a chemical species is a type of molecular structural for
 
 | Common Name      | IUPAC Name | Molecular Formula | Skeletal Formula | 
 | :-----------: | :-----------:| :-----------: | :----------:| 
-| coronene      |  coronene | C<sub>24</sub>H<sub>12</sub> | ![](images/model_images/494155/494155.png) |
-| biphenylene  | biphenylene | C<sub>12</sub>H<sub>8</sub> |![](images/model_images/497397/497397.png)|
-|1-Phenylpropene | [(E)-prop-1-enyl]benzene | C<sub>9</sub>H<sub>10</sub>| ![](images/model_images/478708/478708.png)  |
+| coronene      |  coronene | C<sub>24</sub>H<sub>12</sub> | ![](images/494155/494155.png) |
+| biphenylene  | biphenylene | C<sub>12</sub>H<sub>8</sub> |![](images/497397/497397.png)|
+|1-Phenylpropene | [(E)-prop-1-enyl]benzene | C<sub>9</sub>H<sub>10</sub>| ![](images/478708/478708.png)  |
 
 ### Simplified Molecular-Input Line-Entry System (SMILES) <a name="SMILES"></a>
 
@@ -46,9 +46,9 @@ SMILES strings use atoms and bond symbols to describe physical properties of che
 
 | Common Name      | IUPAC Name |Molecular Formula | Skeletal Formula | Canonical SMILES | 
 | :-----------: | :-----------:| :-----------: | :----------:|  :----------:| 
-| coronene      |  coronene | C<sub>24</sub>H<sub>12</sub> | ![](images/model_images/494155/494155.png) | C1=CC2=C3C4=C1C=CC5=C4C6=C(C=C5)C=CC7=C6C3=C(C=C2)C=C7|
-| biphenylene  | biphenylene | C<sub>12</sub>H<sub>8</sub> |![](images/model_images/497397/497397.png)| C1=CC2=C3C=CC=CC3=C2C=C1|
-|1-Phenylpropene | [(E)-prop-1-enyl]benzene | C<sub>9</sub>H<sub>10</sub>| ![](images/model_images/478708/478708.png)  | CC=CC1=CC=CC=C1|
+| coronene      |  coronene | C<sub>24</sub>H<sub>12</sub> | ![](images/494155/494155.png) | C1=CC2=C3C4=C1C=CC5=C4C6=C(C=C5)C=CC7=C6C3=C(C=C2)C=C7|
+| biphenylene  | biphenylene | C<sub>12</sub>H<sub>8</sub> |![](images/497397/497397.png)| C1=CC2=C3C=CC=CC3=C2C=C1|
+|1-Phenylpropene | [(E)-prop-1-enyl]benzene | C<sub>9</sub>H<sub>10</sub>| ![](images/478708/478708.png)  | CC=CC1=CC=CC=C1|
 
 Perhaps the most important property of SMILES, as it relates to data science, is that the data is quite compact compared to other methods. For example, SMILES structures are around 1.6 bytes per atom, on average. This is quite small, especially when compared to standard skeletal image files, which have an averge size of 4.0 kilobytes.
 
@@ -62,9 +62,9 @@ Each structure conveys unique information about elements and bonding orientation
 
 | Common Name      | IUPAC Name |Molecular Formula | Skeletal Formula | 
 | :-----------: | :-----------:| :-----------: | :----------:| 
-| coronene      |  coronene | C<sub>24</sub>H<sub>12</sub> | ![](images/model_images/494155/494155.png) |
-| biphenylene  | biphenylene | C<sub>12</sub>H<sub>8</sub> |![](images/model_images/497397/497397.png)|
-|1-Phenylpropene | [(E)-prop-1-enyl]benzene | C<sub>9</sub>H<sub>10</sub>| ![](images/model_images/478708/478708.png)  |
+| coronene      |  coronene | C<sub>24</sub>H<sub>12</sub> | ![](images/494155/494155.png) |
+| biphenylene  | biphenylene | C<sub>12</sub>H<sub>8</sub> |![](images/497397/497397.png)|
+|1-Phenylpropene | [(E)-prop-1-enyl]benzene | C<sub>9</sub>H<sub>10</sub>| ![](images/478708.png)  |
 
 #### Matching SMILES Strings to Skeletal Formulas <a name="skeletal_images"></a>
 
@@ -164,6 +164,10 @@ model.add(Conv2D(32, (3, 3)))
 model.add(Activation('elu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
+model.add(Conv2D(32, (3, 3)))
+model.add(Activation('elu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
 model.add(Conv2D(64, (3, 3)))
 model.add(Activation('elu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
@@ -191,17 +195,17 @@ In order to create a model with appropriately tuned hyperparameters, I started t
 
 | Structural Image      | Augmented Image Example 1 | Augmented Image Example 2 | Augmented Image Example 3 |
 | :-----------: | :-----------:| :-----------: | :----------:| 
-| ![](images/model_images/494155/494155.png)| ![](images/model_images/494155/_0_22.png) | ![](images/model_images/494155/_0_7483.png) |   ![](images/model_images/494155/_0_872.png) |
-| ![](images/model_images/497397/497397.png)| ![](images/model_images/497397/_0_5840.png) | ![](images/model_images/497397/_0_7180.png) |   ![](images/model_images/497397/_0_998.png) |
-| ![](images/model_images/478708/478708.png)| ![](images/model_images/478708/_0_6635.png) | ![](images/model_images/478708/_0_6801.png) |   ![](images/model_images/478708/_0_980.png) |
+| ![](images/494155/494155.png)| ![](images/494155/_0_22.png) | ![](images/494155/_0_7483.png) |   ![](images/494155/_0_872.png) |
+| ![](images/497397/497397.png)| ![](images/497397/_0_5840.png) | ![](images/497397/_0_7180.png) |   ![](images/497397/_0_998.png) |
+| ![](images/478708/478708.png)| ![](images/478708/_0_6635.png) | ![](images/478708/_0_6801.png) |   ![](images/478708/_0_980.png) |
 
 Using the weights and hyperparameters for the 3 class training model, I started training the 1,458 class model. Initially, I continued using the simpler augmentation parameters. This allowed me to generate and save model weights, with the intention of eventually increasing the difficulty of the training set. The accuracy and loss for this model can be seen in **Figure 2** and **Figure 3**.
 
-![](images/model_images/model_accuracy_1000.png)
+![](images/6_layer_accuracy.png)
 
 **Figure 2**: Model accuracy for model trained using simpler augmentation parameters.
 
-![](images/model_images/model_loss_1000.png)
+![](images/6_layer_loss.png)
 
 **Figure 3**: Model loss for model trained using simpler augmentation parameters.
 

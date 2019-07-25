@@ -7,8 +7,6 @@
     1. [Skeletal Formulas](#skeletal_formulas) 
     2. [Simplified Molecular-Input Line-Entry System (SMILES)](#SMILES)
     3. [Building a Scalable Database](#database)
-        1. [Matching SMILES Strings to Skeletal Formulas](#skeletal_images)
-        2. [Encoding SMILES Strings](#encoding)
     4. [Small-Data Problem and Image Augmentation using Keras](#small-data)
 3. [Convolutional Neural Network Model](#cnn)
     1. [Training Set](#train)
@@ -20,13 +18,13 @@
 
 ## Question <a name="Question"></a>
 
-Can I build a model that can correctly classify organic chemistry molecules?
+Can I build a model that can correctly classify images of chemical structures?
 
 ## Introduction <a name="Introduction"></a>
 
 ### Skeletal Formulas <a name="skeletal_formulas"></a>
 
-The skeletal formula of a chemical species is a type of molecular structural formula that serves as a shorthand representation of a molecule's bonding and contains some information about its molecular geometry. It is represented in two dimensions, and is usually hand-drawn as a shorthand representation for sketching species or reactions. This shorthand representation is particularly useful in that carbons and hydrogens, the two most common atoms in organic chemistry, don't need to be explicitly drawn. These structural formulas contain the same information that the SMILES strings contain, but are depicted in a different way.
+The skeletal formula of a chemical species is a type of molecular structural formula that serves as a shorthand representation of a molecule's bonding and contains some information about its molecular geometry. It is represented in two dimensions, and is usually hand-drawn as a shorthand representation for sketching species or reactions. This shorthand representation is particularly useful in that carbons and hydrogens, the two most common atoms in organic chemistry, don't need to be explicitly drawn.
 
 **Table 1**: Examples of different chemical species' names, molecular formulas and skeletal formulas
 
@@ -38,7 +36,7 @@ The skeletal formula of a chemical species is a type of molecular structural for
 
 ### Simplified Molecular-Input Line-Entry System (SMILES) <a name="SMILES"></a>
 
-SMILES is a line notation for describing the structure of chemical elements or compounds using short ASCII strings. These strings can be thought of as a language, where atoms and bond symbols make up the vocabulary. 
+SMILES is a line notation for describing the structure of chemical elements or compounds using short ASCII strings. These strings can be thought of as a language, where atoms and bond symbols make up the vocabulary.  The SMILES strings contain the same information as the structural images, but are depicted in a different way.
 
 SMILES strings use atoms and bond symbols to describe physical properties of chemical species in the same way that a drawing of the structure conveys information about elements and bonding orientation. This means that the SMILES string for each molecule is synonymous with its structure and since the strings are unique, the name is universal. These strings can be imported by most molecule editors for conversion into other chemical representations, including structural drawings and spectral predictions. 
 
@@ -50,25 +48,13 @@ SMILES strings use atoms and bond symbols to describe physical properties of che
 | biphenylene  | biphenylene | C<sub>12</sub>H<sub>8</sub> |![](images/497397/497397.png)| C1=CC2=C3C=CC=CC3=C2C=C1|
 |1-Phenylpropene | [(E)-prop-1-enyl]benzene | C<sub>9</sub>H<sub>10</sub>| ![](images/478708/478708.png)  | CC=CC1=CC=CC=C1|
 
-Perhaps the most important property of SMILES, as it relates to data science, is that the data is quite compact compared to other methods. For example, SMILES structures are around 1.6 bytes per atom, on average. This is quite small, especially when compared to standard skeletal image files, which have an averge size of 4.0 kilobytes.
+Perhaps the most important property of SMILES, as it relates to data science, is that the datatype is quite compact. SMILES structures average around 1.6 bytes per atom, compared to skeletal image files, which have an averge size of 4.0 kilobytes.
 
 ## Building a Scalable Database <a name="database"></a>
 
-The skeletal formula of a chemical species is a type of molecular structural formula that serves as a shorthand representation of a molecule's bonding and contains some information about its molecular geometry. It is represented in two dimensions, and is used as a shorthand representation for sketching species or reactions. This shorthand representation is particularly useful in that carbons and hydrogens, the two most common atoms in organic chemistry, don't need to be explicitly drawn.
+Since all chemical structures are unique, this means that there is only one correct way to represent every chemical species. This presents an interesting problem when trying to train a neural network to predict the name of a structure - by convention the datasets are going to be sparse. The [dataset](https://github.com/cwolfbrandt/csk_database/edit/master/README.md) has 9,691 rows, each with a unique name and link to a 300 x 300 pixel structural image, as shown in **Table 1**.
 
-Each structure conveys unique information about elements and bonding orientation in a chemical species. Since the structures are unique, this means that there is only one correct way to represent every chemical species. This presents an interesting problem when trying to train a neural network to predict the name of a structure - by convention the datasets are going to be sparse. The [hydrocarbon dataset](https://github.com/cwolfbrandt/csk_database/edit/master/README.md) has 1,458 rows, each with a unique name and 300 x 300 pixel structural image, as shown in **Table 1**.
-
-**Table 1**: Sample rows from hydrocarbon dataset
-
-| Common Name      | IUPAC Name |Molecular Formula | Skeletal Formula | 
-| :-----------: | :-----------:| :-----------: | :----------:| 
-| coronene      |  coronene | C<sub>24</sub>H<sub>12</sub> | ![](images/494155/494155.png) |
-| biphenylene  | biphenylene | C<sub>12</sub>H<sub>8</sub> |![](images/497397/497397.png)|
-|1-Phenylpropene | [(E)-prop-1-enyl]benzene | C<sub>9</sub>H<sub>10</sub>| ![](images/478708/478708.png)  |
-
-#### Matching SMILES Strings to Skeletal Formulas <a name="skeletal_images"></a>
-
-With my hydrocarbon dataset, I was now able to query [PubChem](https://pubchem.ncbi.nlm.nih.gov/) for the skeletal formulas. The URLs containing each image are easy to generate, as they all follow the same format. Each URL generated a .png image file of each molecule, which I downloaded and added to the dataset.
+**Table 1**: Sample rows from the dataset
 
 | SMILES      | Image URL | Skeletal Formula | 
 | :-----------: |:-----------: | :-----------: |
@@ -76,7 +62,7 @@ With my hydrocarbon dataset, I was now able to query [PubChem](https://pubchem.n
 |Cc1ccc(C=C)c2ccccc12| https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/Cc1ccc(C=C)c2ccccc12/PNG |![](images/313870557.png)|
 |Cc1ccccc1\C=C\c1ccccc1	|  https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/Cc1ccccc1\C=C\c1ccccc1/PNG | ![](images/32717.png)| 
 
-#### Encoding SMILES Strings <a name="skeletal_images"></a>
+Generating the image URLs required URL encoding the SMILES strings, since the strings can contain characters which are not safe for URLs. This had the added benefit of making the SMILES strings safe for filenames as well. The final training dataset was in a directory architected based on [this blog post from the Keras website](https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html), where the filenames are URL encoded SMILES strings.
 
 ## Convolutional Neural Network Model <a name="cnn"></a>
 
@@ -110,15 +96,29 @@ When creating the initial small dataset for model building, the following image 
 
 ```
 rotation_range=40
+width_shift_range=0.1
+height_shift_range=0.1
+rescale=1./255
+shear_range=0.1
+zoom_range=0.1
+horizontal_flip=False
+vertical_flip=False
+fill_mode='nearest'
+```
+**Parameters 1**: Initial set of image augmentation parameters for training.
+
+```
+rotation_range=50
 width_shift_range=0.2
 height_shift_range=0.2
 rescale=1./255
 shear_range=0.2
 zoom_range=0.2
 horizontal_flip=True
+vertical_flip=True
 fill_mode='nearest'
 ```
-**Parameters 1**: Complex set of image augmentation parameters for training.
+**Parameters 2**: Initial set of image augmentation parameters for training.
 
 ### Model Hyperparameters  <a name="hp"></a>
 
@@ -152,7 +152,7 @@ CONV layer will compute the output of neurons that are connected to local region
 ACTIVATION layer will apply an elementwise activation function, leaving the volume unchanged.
 POOL layer will perform a downsampling operation along the spatial dimensions (width, height), resulting in a smaller volume.
 ```
-The code snippet below is the architecture for the model - a stack of 3 convolution layers with an `ELU` activation followed by max-pooling layers:
+The code snippet below is the architecture for the model - a stack of 4 convolution layers with an `ELU` activation followed by max-pooling layers:
 
 ```python
 model = Sequential()
@@ -164,7 +164,7 @@ model.add(Conv2D(32, (3, 3)))
 model.add(Activation('elu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
-model.add(Conv2D(32, (3, 3)))
+model.add(Conv2D(64, (3, 3)))
 model.add(Activation('elu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 

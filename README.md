@@ -64,7 +64,7 @@ Each structure conveys unique information about elements and bonding orientation
 | :-----------: | :-----------:| :-----------: | :----------:| 
 | coronene      |  coronene | C<sub>24</sub>H<sub>12</sub> | ![](images/494155/494155.png) |
 | biphenylene  | biphenylene | C<sub>12</sub>H<sub>8</sub> |![](images/497397/497397.png)|
-|1-Phenylpropene | [(E)-prop-1-enyl]benzene | C<sub>9</sub>H<sub>10</sub>| ![](images/478708.png)  |
+|1-Phenylpropene | [(E)-prop-1-enyl]benzene | C<sub>9</sub>H<sub>10</sub>| ![](images/478708/478708.png)  |
 
 #### Matching SMILES Strings to Skeletal Formulas <a name="skeletal_images"></a>
 
@@ -137,7 +137,7 @@ The `Adam` optimization algorithm is different to classical stochastic gradient 
 
 The `ELU` activation function, or "exponential linear unit", avoids a vanishing gradient similar to `ReLUs`, but `ELUs` have improved learning characteristics compared to the other activation functions. In contrast to `ReLUs`, `ELUs` don't have a slope of 0 for negative values. This allows the `ELU` function to push mean unit activations closer to zero; zero means speed up learning because they bring the gradient closer to the unit natural gradient. A comparison between `ReLU` and `ELU` activation functions can be seen in **Figure 1**.
 
-![](images/model_images/elu_vs_relu.png)
+![](images/elu_vs_relu.png)
 
 **Figure 1**: `ELU` vs. `ReLU` activation functions
 
@@ -215,18 +215,18 @@ I was finally able to increase the difficulty of the training set, using the aug
 
 | Structural Image      | Augmented Image Example 1 | Augmented Image Example 2 |
 | :-----------: | :-----------:| :-----------: | 
-| ![](images/model_images/flip_images/492379/492379.png)| ![](images/model_images/flip_images/492379/_0_9179.png) | ![](images/model_images/flip_images/492379/_0_82.png) | 
-| ![](images/model_images/flip_images/504270/504270.png)| ![](images/model_images/flip_images/504270/_0_569.png) | ![](images/model_images/flip_images/504270/_0_8840.png) | 
-| ![](images/model_images/flip_images/516411/516411.png)| ![](images/model_images/flip_images/516411/_0_3425.png) | ![](images/model_images/flip_images/516411/_0_5024.png) | 
-| ![](images/model_images/flip_images/529978/529978.png)|![](images/model_images/flip_images/529978/_0_6933.png) | ![](images/model_images/flip_images/529978/_0_7646.png) | 
+| ![](images/flip_images/492379/492379.png)| ![](images/flip_images/492379/_0_9179.png) | ![](images/flip_images/492379/_0_82.png) | 
+| ![](images/flip_images/504270/504270.png)| ![](images/flip_images/504270/_0_569.png) | ![](images/flip_images/504270/_0_8840.png) | 
+| ![](images/flip_images/516411/516411.png)| ![](images/flip_images/516411/_0_3425.png) | ![](images/flip_images/516411/_0_5024.png) | 
+| ![](images/flip_images/529978/529978.png)|![](images/flip_images/529978/_0_6933.png) | ![](images/flip_images/529978/_0_7646.png) | 
 
 The accuracy and loss for this model can be seen in **Figure 4** and **Figure 5**.
 
-![](images/model_images/relu_250_acc_0001_flip.png)
+![](images/relu_250_acc_0001_flip.png)
 
 **Figure 4**: Model accuracy for model trained using wider augmentation parameters (including horizontal flipping).
 
-![](images/model_images/relu_250_loss_0001_flip.png)
+![](images/relu_250_loss_0001_flip.png)
 
 **Figure 5**: Model loss for model trained using wider augmentation parameters (including horizontal flipping).
 

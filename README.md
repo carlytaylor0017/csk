@@ -18,11 +18,9 @@
     5. [Training](#train)
     6. [Performance and Predictions](#train)
 
-
-
 ## Question <a name="Question"></a>
 
-Can I build a model that can correctly classify organic chemistry molecules given that my current dataset has only one image per class?
+Can I build a model that can correctly classify organic chemistry molecules?
 
 ## Introduction <a name="Introduction"></a>
 
@@ -32,12 +30,11 @@ The skeletal formula of a chemical species is a type of molecular structural for
 
 **Table 1**: Examples of different chemical species' names, molecular formulas and skeletal formulas
 
-| Common Name      | IUPAC Name |Molecular Formula | Skeletal Formula | 
+| Common Name      | IUPAC Name | Molecular Formula | Skeletal Formula | 
 | :-----------: | :-----------:| :-----------: | :----------:| 
-| ethanol      |  ethanol | CH<sub>3</sub>CH<sub>2</sub>OH | ![](images/ethanol.png) |
-| acetic acid   | ethanoic acid | CH<sub>3</sub>COOH  |![](images/acetic_acid.png)|
-|cyclohexane | cyclohexane | C<sub>6</sub>H<sub>12</sub>| ![](images/cyclohexane.png)  |
-| diphenylmethane | 1,1'-methylenedibenzene | (C<sub>6</sub>H<sub>5</sub>)<sub>2</sub>CH<sub>2</sub>|![](images/diphenylmethane.png)|
+| coronene      |  coronene | C<sub>24</sub>H<sub>12</sub> | ![](images/model_images/494155/494155.png) |
+| biphenylene  | biphenylene | C<sub>12</sub>H<sub>8</sub> |![](images/model_images/497397/497397.png)|
+|1-Phenylpropene | [(E)-prop-1-enyl]benzene | C<sub>9</sub>H<sub>10</sub>| ![](images/model_images/478708/478708.png)  |
 
 ### Simplified Molecular-Input Line-Entry System (SMILES) <a name="SMILES"></a>
 
@@ -47,12 +44,11 @@ SMILES strings use atoms and bond symbols to describe physical properties of che
 
 **Table 2**: SMILES strings contrasted with skeletal formulas
 
-| Common Name      | IUPAC Name |Molecular Formula | Skeletal Formula |  SMILES String |
-| :-----------: | :-----------:| :-----------: | :----------:| :----------:|
-| ethanol      |  ethanol | CH<sub>3</sub>CH<sub>2</sub>OH | ![](images/ethanol.png) | CCO|
-| acetic acid   | ethanoic acid | CH<sub>3</sub>COOH  |![](images/acetic_acid.png)| CC(=O)O |
-|cyclohexane | cyclohexane | C<sub>6</sub>H<sub>12</sub>| ![](images/cyclohexane.png)  | C1CCCCC1 | 
-| diphenylmethane | 1,1'-methylenedibenzene |(C<sub>6</sub>H<sub>5</sub>)<sub>2</sub>CH<sub>2</sub>|![](images/diphenylmethane.png)|C1=CC=C(C=C1)CC2=CC=CC=C2|
+| Common Name      | IUPAC Name |Molecular Formula | Skeletal Formula | Canonical SMILES | 
+| :-----------: | :-----------:| :-----------: | :----------:|  :----------:| 
+| coronene      |  coronene | C<sub>24</sub>H<sub>12</sub> | ![](images/model_images/494155/494155.png) | C1=CC2=C3C4=C1C=CC5=C4C6=C(C=C5)C=CC7=C6C3=C(C=C2)C=C7|
+| biphenylene  | biphenylene | C<sub>12</sub>H<sub>8</sub> |![](images/model_images/497397/497397.png)| C1=CC2=C3C=CC=CC3=C2C=C1|
+|1-Phenylpropene | [(E)-prop-1-enyl]benzene | C<sub>9</sub>H<sub>10</sub>| ![](images/model_images/478708/478708.png)  | CC=CC1=CC=CC=C1|
 
 Perhaps the most important property of SMILES, as it relates to data science, is that the data is quite compact compared to other methods. For example, SMILES structures are around 1.6 bytes per atom, on average. This is quite small, especially when compared to standard skeletal image files, which have an averge size of 4.0 kilobytes.
 
@@ -231,16 +227,5 @@ The accuracy and loss for this model can be seen in **Figure 4** and **Figure 5*
 **Figure 5**: Model loss for model trained using wider augmentation parameters (including horizontal flipping).
 
 While it is far from perfect, this model can predict the correct class for any molecule with upwards of 80% accuracy. Given the limitations of the datase, this is well beyond the bounds of what was expected and is a pleasant surprise.
-
-
-|    | Filename                                | Prediction_1      |   Percent_1 | Prediction_2          |   Percent_2 | Prediction_3                                |   Percent_3 |
-|---:|:----------------------------------------|:------------------|------------:|:----------------------|------------:|:--------------------------------------------|------------:|
-|  0 | COC%28CN%29CN/COC%28CN%29CN.png         | COC%28CN%29CN     |    0.999978 | CC%28C%29%28N%29C%23N | 1.95933e-05 | NCC%28CN%29CN                               | 1.41832e-06 |
-|  1 | COCCC%28%3DO%29CN/COCCC%28%3DO%29CN.png | COCCC%28%3DO%29CN |    0.898298 | CCCCC%28%3DO%29CN     | 0.0822022   | CCCCC%28%3DO%29CO                           | 0.0137854   |
-|  2 | COCOC%28C%29CO/COCOC%28C%29CO.png       | COCOC%28C%29CO    |    0.977381 | CCC%28C%29OCON        | 0.0214027   | CC%28CO%29OCCN                              | 0.000469096 |
-|  3 | CONCCN/CONCCN.png                       | CCNCCN            |    0.998515 | CONCCN                | 0.00090443  | CCN%28CCN%29OC                              | 0.000498081 |
-|  4 | N%23CN1CC1/N%23CN1CC1.png               | N%23CN1CC1        |    0.992604 | N%23CN1CCCC1          | 0.00659746  | CC%28C%29%28C%29c1ccc%28cc1%29C%23Cc1ccccc1 | 0.000278826 |
-|  5 | NCCOC%3DC/NCCOC%3DC.png                 | NCCOC%3DC         |    0.998045 | NCCCCN                | 0.00163426  | OCCOC%3DC                                   | 0.000138851 |
-|  6 | NOCCON/NOCCON.png                       | NOCCON            |    0.999767 | NNCCNN                | 0.000138586 | NCCCCN                                      | 3.70406e-05 |
 
 

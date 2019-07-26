@@ -1,4 +1,4 @@
-# Deep learning for organic chemistry - training a convolutional neural network (CNN) to name chemical structures
+# Deep learning for organic chemistry - utilizing deep learning techniques to identify chemical structures
 ## Carly Wolfbrandt
 
 ### Table of Contents

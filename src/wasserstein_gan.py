@@ -41,7 +41,7 @@ from PIL import Image
 
 import tensorflow as tf
 
-os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 matplotlib.rcParams.update({'axes.titlesize': 5})
 
@@ -138,7 +138,8 @@ def make_generator():
     model.add(LeakyReLU())
     # Because we normalized training inputs to lie in the range [-1, 1],
     # the tanh function should be used for the output of the generator to ensure
-    # its output also lies in this range.
+    # its output also lies in this range. The sigmoid function will force the
+    #images to be black and white.
     model.add(Convolution2D(img_channels, (5, 5), padding='same', activation='sigmoid'))
     return model
 
@@ -153,9 +154,11 @@ def make_discriminator():
     used in the discriminator."""
     model = Sequential()
     if K.image_data_format() == 'channels_first':
-        model.add(Convolution2D(64, (5, 5), padding='same', input_shape=(img_channels, img_height, img_width)))
+        model.add(Convolution2D(64, (5, 5), padding='same',
+                  input_shape=(img_channels, img_height, img_width)))
     else:
-        model.add(Convolution2D(64, (5, 5), padding='same', input_shape=(img_height, img_width, img_channels)))
+        model.add(Convolution2D(64, (5, 5), padding='same',
+                  input_shape=(img_height, img_width, img_channels)))
     model.add(LeakyReLU())
     model.add(Convolution2D(128, (5, 5), kernel_initializer='he_normal',
                             strides=[2, 2]))
@@ -180,6 +183,7 @@ class RandomWeightedAverage(_Merge):
     def _merge_function(self, inputs):
         weights = K.random_uniform((batch_size, 1, 1, 1))
         return (weights * inputs[0]) + ((1 - weights) * inputs[1])
+
 
 def plot_batch(image_batch, figure_path, label_batch=None, vmin=0, vmax=255, scale=True):
     """Plots a batch of images and their corresponding label(s)/annotations, saving the plot to disc.
@@ -215,7 +219,8 @@ def plot_batch(image_batch, figure_path, label_batch=None, vmin=0, vmax=255, sca
                         x /= x_max
                     x *= 255
 
-                ax[i][j].imshow(x.astype('uint8'), vmin=vmin, vmax=vmax, interpolation='lanczos', cmap='gray')
+                ax[i][j].imshow(x.astype('uint8'), vmin=vmin, vmax=vmax,
+                                interpolation='lanczos', cmap='gray')
                 if label_batch is not None:
                     ax[i][j].set_title(label_batch[i * nb_columns + j])
                 ax[i][j].set_axis_off()
@@ -225,28 +230,26 @@ def plot_batch(image_batch, figure_path, label_batch=None, vmin=0, vmax=255, sca
     plt.savefig(os.path.join(figure_path), dpi=600)
     plt.close()
 
-def adversarial_training(data_dir, generator_model_path, discriminator_model_path):
 
+def adversarial_training(data_dir, generator_model_path, discriminator_model_path):
         """trains the generator and discrminator and saves weights and images every
         50 epochs
         """
 
-    data_generator = image.ImageDataGenerator(
-        data_format='channels_last',
-        rescale=1. / 255)
+    data_generator = image.ImageDataGenerator(data_format='channels_last',
+                                              rescale=1. / 255)
 
     flow_from_directory_params = {'target_size': (img_height, img_width),
                                   'color_mode': 'grayscale',
                                   'class_mode': None,
                                   'batch_size': batch_size}
 
-    real_image_generator = data_generator.flow_from_directory(
-        directory=data_dir,
-        **flow_from_directory_params)
+    real_image_generator = data_generator.flow_from_directory(directory=data_dir,
+                                                              **flow_from_directory_params)
 
     def get_image_batch():
-        img_batch = real_image_generator.next()
 
+        img_batch = real_image_generator.next()
         # keras generators may generate an incomplete batch for the last batch in an epoch of data
         if len(img_batch) != batch_size:
             img_batch = real_image_generator.next()
@@ -261,8 +264,7 @@ def adversarial_training(data_dir, generator_model_path, discriminator_model_pat
         if epoch % 50 == 0:
             # save a batch of generated and real images to disc
             plot_batch(g_z, os.path.join(output_dir, 'batch_image_step_{}.png').format(epoch))
-        if epoch % 50 == 0:
-            #save model weights to disc
+            # save model weights to disc
             model_checkpoint_base_name = os.path.join(model_dir, '{}_model_weights_step_{}.h5')
             generator_model.save_weights(model_checkpoint_base_name.format('generator', epoch))
             discriminator_model.save_weights(model_checkpoint_base_name.format('discriminator', epoch))
@@ -362,7 +364,6 @@ def adversarial_training(data_dir, generator_model_path, discriminator_model_pat
         discriminator_model.load_weights(discriminator_model_path, by_name=True)
 
     for epoch in range(epochs):
-        # np.random.shuffle(X_train)
         print("Epoch: ", epoch)
         discriminator_loss = []
         generator_loss = []

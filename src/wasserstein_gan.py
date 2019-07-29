@@ -132,10 +132,6 @@ def make_generator():
     model.add(Convolution2D(64, (5, 5), padding='same'))
     model.add(BatchNormalization(axis=bn_axis))
     model.add(LeakyReLU())
-    #
-    # model.add(Convolution2D(64, (5, 5), padding='same'))
-    # model.add(BatchNormalization(axis=bn_axis))
-    # model.add(LeakyReLU())
 
     model.add(Conv2DTranspose(64, (5, 5), strides=2, padding='same'))
     model.add(BatchNormalization(axis=bn_axis))
@@ -167,9 +163,6 @@ def make_discriminator():
     model.add(Convolution2D(128, (5, 5), kernel_initializer='he_normal', padding='same',
                             strides=[2, 2]))
 
-    # model.add(LeakyReLU())
-    # model.add(Convolution2D(128, (5, 5), kernel_initializer='he_normal', padding='same',
-    #                         strides=[2, 2]))
     model.add(LeakyReLU())
     model.add(Flatten())
     model.add(Dense(1024, kernel_initializer='he_normal'))
@@ -194,7 +187,7 @@ def plot_batch(image_batch, figure_path, label_batch=None, vmin=0, vmax=255, sca
     :param figure_path: Full path of the filename the plot will be saved as.
     :param label_batch: Batch of labels corresponding to `image_batch`.
        Labels will be displayed along w/ their corresponding image.
-    # """
+    """
 
     batch_size = len(image_batch)
     assert batch_size >= 1
@@ -234,24 +227,16 @@ def plot_batch(image_batch, figure_path, label_batch=None, vmin=0, vmax=255, sca
 
 def adversarial_training(data_dir, generator_model_path, discriminator_model_path):
 
+        """trains the generator and discrminator and saves weights and images every
+        50 epochs
+        """
+
     data_generator = image.ImageDataGenerator(
-        #preprocessing_function=applications.xception.preprocess_input,
         data_format='channels_last',
-        # rotation_range=0.01,
-        # width_shift_range=0.01,
-        # height_shift_range=0.01,
-        # shear_range=0.01,
-        # zoom_range=0.01,
-        # channel_shift_range=0.01,
-        rescale=1. / 255,
-        # horizontal_flip=False,
-        # vertical_flip=False,
-        #featurewise_std_normalization = True
-        )
+        rescale=1. / 255)
 
     flow_from_directory_params = {'target_size': (img_height, img_width),
                                   'color_mode': 'grayscale',
-                                  #else 'rgb',
                                   'class_mode': None,
                                   'batch_size': batch_size}
 
@@ -276,9 +261,6 @@ def adversarial_training(data_dir, generator_model_path, discriminator_model_pat
         if epoch % 50 == 0:
             # save a batch of generated and real images to disc
             plot_batch(g_z, os.path.join(output_dir, 'batch_image_step_{}.png').format(epoch))
-                        #,label_batch=['generated'] * batch_size)
-            # save one generated image to disc
-            # Image.fromarray(g_z[0], mode='RGB').save(os.path.join(output_dir, 'generated_image_step_{}.png').format(epoch))
         if epoch % 50 == 0:
             #save model weights to disc
             model_checkpoint_base_name = os.path.join(model_dir, '{}_model_weights_step_{}.h5')

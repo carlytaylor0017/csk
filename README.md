@@ -248,3 +248,13 @@ While it is far from perfect, this model can predict the correct class for any m
 | 11 | CCCCCCCCCCCCc1ccccc1  | C(=Cc1ccc2ccccc2c1)c1ccc2ccccc2c1 |    0.379864 | c1cc2ccc1c1ccc(cc1)c1ccc(cc1)c1ccc(cc1)c1ccc(cc1)c1ccc(cc1)c1ccc2cc1 |   0.344739  | NCC=CCC1CC1                                                                    | 0.0751602   |
 | 12 | CCCCCCCCCCCCc1ccccc1  | N#CCCCNC#N                        |    0.495172 | NCCCB(O)O                                                            |   0.189736  | c1cc2ccc1c1ccc(cc1)c1ccc(cc1)c1ccc(cc1)c1ccc(cc1)c1ccc(cc1)c1ccc(cc1)c1ccc2cc1 | 0.11116     |
 | 13 | CCCCCCCCCCCCc1ccccc1  | OCCOC1CCNC1                       |    0.156021 | OCCNC1CCNC1                                                          |   0.0983546 | CCCCCCCCCCC#Cc1cccc(C)c1C                                                      | 0.079569    |
+
+
+
+|    | Filename                      | Prediction_1                                                    |   Percent_1 | Prediction_2                           |   Percent_2 | Prediction_3                                    |   Percent_3 |
+|---:|:------------------------------|:----------------------------------------------------------------|------------:|:---------------------------------------|------------:|:------------------------------------------------|------------:|
+|  0 | C=CCc1ccc(cc1)-c1ccc(CC=C)cc1 | C=CCc1ccc(cc1)-c1ccc(CC=C)cc1                                   |     97.4 | C#Cc1ccc(cc1)C12CC(C1)C2               |     1.1 | C1C(=CC=C1c1ccccc1)c1ccccc1                     |    0.5 |
+|  2 | CC(=C)Cc1ccccc1-c1ccccc1      | CC=C(c1ccccc1)c1ccccc1                                          |     61.6 | Cc1cc(C)c(\C=C\c2ccccc2C=C)c(C)c1      |    33.0   | CC(=C)Cc1ccccc1-c1ccccc1                        |    1.4  |
+|  4 | CCCCCCCCCCCCCc1ccccc1         | CCCCCCCCCc1ccc(cc1)-c1ccccc1                                    |     70.5 | CCCCCCCCCCCCCc1ccccc1                  |    26.9  | CCCCCCC#Cc1ccc(C)c(C)c1                         |    1.7  |
+|  6 | CCCCCCCCCCCCc1ccccc1          | CCCCCCCCc1ccccc1                                                |     62.7 | CCCCCCCCCCCCc1ccccc1                   |    23.1  | C=CCCCCCCc1ccccc1                               |    3.5    |
+|  8 | Cc1cccc(C)c1CCC=C             | Cc1cccc(C)c1CCC=C                                               |     85.7 | Cc1cc(C)c(C)c(CCC=C)c1C                |    11.0  | CC(C)(C)C(C#C)(c1ccccc1)c1ccccc1                |    1.2  |

@@ -251,7 +251,7 @@ While it is far from perfect, this model can predict the correct class for any m
 
 
 
-| Filename  | Prediction_1  |   Percent_1 | Prediction_2   |   Percent_2 | Prediction_3 |   Percent_3 |
+| Image  | Prediction 1  |   Percent | Prediction 2   |   Percent | Prediction 3 |   Percent |
 |:----------|:--------------|------------:|:---------------|------------:|:-------------|------------:|
 | ![](images/model_test_images/C=CCc1ccc(cc1)-c1ccc(CC=C)cc1/C=CCc1ccc(cc1)-c1ccc(CC=C)cc1.png)|![](images/model_test_images/C=CCc1ccc(cc1)-c1ccc(CC=C)cc1/C=CCc1ccc(cc1)-c1ccc(CC=C)cc1.png)| 97.4 |![](images/model_test_images/C#Cc1ccc(cc1)C12CC(C1)C2/C#Cc1ccc(cc1)C12CC(C1)C2.png) | 1.1 |![](images/model_test_images/C1C(=CC=C1c1ccccc1)c1ccccc1/C1C(=CC=C1c1ccccc1)c1ccccc1.png) | 0.5 |
 | ![](images/model_test_images/CC(=C)Cc1ccccc1-c1ccccc1/CC(=C)Cc1ccccc1-c1ccccc1.png)|![](images/model_test_images/CC=C(c1ccccc1)c1ccccc1/CC=C(c1ccccc1)c1ccccc1.png)| 61.6 |![](images/model_test_images/Cc1cc(C)c(\C=C\c2ccccc2C=C)c(C)c1/Cc1cc(C)c(\C=C\c2ccccc2C=C)c(C)c1.png) | 33.0 |![](images/model_test_images/CC(=C)Cc1ccccc1-c1ccccc1/CC(=C)Cc1ccccc1-c1ccccc1.png)| 1.4 |

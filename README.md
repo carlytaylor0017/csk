@@ -251,10 +251,25 @@ While it is far from perfect, this model can predict the correct class for any m
 
 
 
-|    | Filename                      | Prediction_1                                                    |   Percent_1 | Prediction_2                           |   Percent_2 | Prediction_3                                    |   Percent_3 |
-|---:|:------------------------------|:----------------------------------------------------------------|------------:|:---------------------------------------|------------:|:------------------------------------------------|------------:|
-|  0 | C=CCc1ccc(cc1)-c1ccc(CC=C)cc1 | C=CCc1ccc(cc1)-c1ccc(CC=C)cc1                                   |     97.4 | C#Cc1ccc(cc1)C12CC(C1)C2               |     1.1 | C1C(=CC=C1c1ccccc1)c1ccccc1                     |    0.5 |
-|  2 | CC(=C)Cc1ccccc1-c1ccccc1      | CC=C(c1ccccc1)c1ccccc1                                          |     61.6 | Cc1cc(C)c(\C=C\c2ccccc2C=C)c(C)c1      |    33.0   | CC(=C)Cc1ccccc1-c1ccccc1                        |    1.4  |
-|  4 | CCCCCCCCCCCCCc1ccccc1         | CCCCCCCCCc1ccc(cc1)-c1ccccc1                                    |     70.5 | CCCCCCCCCCCCCc1ccccc1                  |    26.9  | CCCCCCC#Cc1ccc(C)c(C)c1                         |    1.7  |
-|  6 | CCCCCCCCCCCCc1ccccc1          | CCCCCCCCc1ccccc1                                                |     62.7 | CCCCCCCCCCCCc1ccccc1                   |    23.1  | C=CCCCCCCc1ccccc1                               |    3.5    |
-|  8 | Cc1cccc(C)c1CCC=C             | Cc1cccc(C)c1CCC=C                                               |     85.7 | Cc1cc(C)c(C)c(CCC=C)c1C                |    11.0  | CC(C)(C)C(C#C)(c1ccccc1)c1ccccc1                |    1.2  |
+| Filename  | Prediction_1  |   Percent_1 | Prediction_2   |   Percent_2 | Prediction_3 |   Percent_3 |
+|:----------|:--------------|------------:|:---------------|------------:|:-------------|------------:|
+| ![](images/model_test_images/C=CCc1ccc(cc1)-c1ccc(CC=C)cc1/C=CCc1ccc(cc1)-c1ccc(CC=C)cc1.png)|  
+![](images/model_test_images/C=CCc1ccc(cc1)-c1ccc(CC=C)cc1/C=CCc1ccc(cc1)-c1ccc(CC=C)cc1.png)| 97.4 | 
+![](images/model_test_images/C#Cc1ccc(cc1)C12CC(C1)C2/C#Cc1ccc(cc1)C12CC(C1)C2.png) | 1.1 |  
+![](images/model_test_images/C1C(=CC=C1c1ccccc1)c1ccccc1/C1C(=CC=C1c1ccccc1)c1ccccc1.png) | 0.5 |
+| ![](images/model_test_images/CC(=C)Cc1ccccc1-c1ccccc1/CC(=C)Cc1ccccc1-c1ccccc1.png)|
+![](images/model_test_images/CC=C(c1ccccc1)c1ccccc1/CC=C(c1ccccc1)c1ccccc1.png)| 61.6 | 
+![](images/model_test_images/Cc1cc(C)c(\C=C\c2ccccc2C=C)c(C)c1/Cc1cc(C)c(\C=C\c2ccccc2C=C)c(C)c1.png) | 33.0 | 
+![](images/model_test_images/CC(=C)Cc1ccccc1-c1ccccc1/CC(=C)Cc1ccccc1-c1ccccc1.png)| 1.4 |
+| ![](images/model_test_images/CCCCCCCCCCCCCc1ccccc1/CCCCCCCCCCCCCc1ccccc1.png)| 
+![](images/model_test_images/CCCCCCCCCc1ccc(cc1)-c1ccccc1/CCCCCCCCCc1ccc(cc1)-c1ccccc1.png)| 70.5 | 
+![](images/model_test_images/CCCCCCCCCCCCCc1ccccc1/CCCCCCCCCCCCCc1ccccc1.png)  |  26.9 | 
+![](images/model_test_images/CCCCCCC#Cc1ccc(C)c(C)c1/CCCCCCC#Cc1ccc(C)c(C)c1.png)|  1.7 |
+| ![](images/model_test_images/CCCCCCCCCCCCCc1ccccc1/CCCCCCCCCCCCCc1ccccc1.png) |
+![](images/model_test_images/CCCCCCCCc1ccccc1/CCCCCCCCc1ccccc1.png)| 62.7 | 
+![](images/model_test_images/CCCCCCCCCCCCc1ccccc1/CCCCCCCCCCCCc1ccccc1.png) |  23.1  | 
+![](images/model_test_images/C=CCCCCCCc1ccccc1/C=CCCCCCCc1ccccc1.png)  | 3.5 |
+| ![](images/model_test_images/Cc1cccc(C)c1CCC=C/Cc1cccc(C)c1CCC=C.png)  | 
+![](images/model_test_images/Cc1cccc(C)c1CCC=C/Cc1cccc(C)c1CCC=C.png) | 85.7 | 
+![](images/model_test_images/CCc1cc(C)c(C)c(CCC=C)c1C/Cc1cc(C)c(C)c(CCC=C)c1C.png)| 11.0 | 
+![](images/model_test_images/CC(C)(C)C(C#C)(c1ccccc1)c1ccccc1/CC(C)(C)C(C#C)(c1ccccc1)c1ccccc1.png) | 1.2 |

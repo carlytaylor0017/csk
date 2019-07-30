@@ -251,7 +251,7 @@ While it is far from perfect, this model can predict the correct class for any m
 
 
 
-| Image  | Prediction 1  |   Percent | Prediction 2   |   Percent | Prediction 3 |   Percent |
+| Image  | Prediction 1  |   Confidence | Prediction 2   |   Confidence | Prediction 3 |   Confidence |
 |:---------:|:-----------:|:---------:|:-------------:|:------------:|:----------:|:---------:|
 | ![](images/model_test_images/C=CCc1ccc(cc1)-c1ccc(CC=C)cc1/_0_1342.png)|![](images/model_test_images/C=CCc1ccc(cc1)-c1ccc(CC=C)cc1/C=CCc1ccc(cc1)-c1ccc(CC=C)cc1.png)| 97.4 | ![](images/model_test_images/triplebond1/triplebond1.png) |  1.1  |![](images/model_test_images/C1C(=CC=C1c1ccccc1)c1ccccc1/C1C(=CC=C1c1ccccc1)c1ccccc1.png) | 0.5 |
 | ![](images/model_test_images/CC(=C)Cc1ccccc1-c1ccccc1/_0_599.png)|![](images/model_test_images/CC=C(c1ccccc1)c1ccccc1/CC=C(c1ccccc1)c1ccccc1.png)| 61.6 |![](images/model_test_images/Cc1cc(C)c(\C=C\c2ccccc2C=C)c(C)c1/Cc1cc(C)c(\C=C\c2ccccc2C=C)c(C)c1.png) | 33.0 |![](images/model_test_images/CC(=C)Cc1ccccc1-c1ccccc1/CC(=C)Cc1ccccc1-c1ccccc1.png)| 1.4 |

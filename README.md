@@ -118,6 +118,10 @@ fill_mode='nearest'
 ```
 **Parameters 1**: Initial set of image augmentation parameters for training.
 
+![](images/easy.gif)
+
+ **Figure 1**: Sample molecule augmented using the above parameters
+
 ```
 rotation_range=40
 width_shift_range=0.2
@@ -130,6 +134,11 @@ vertical_flip=True
 fill_mode='nearest'
 ```
 **Parameters 2**: Final set of image augmentation parameters for training.
+
+![](images/difficult.gif)
+
+ **Figure 2**: Sample molecule augmented using the above parameters
+ 
 
 ### Model Hyperparameters  <a name="hp"></a>
 
@@ -150,7 +159,7 @@ The `ELU` activation function, or "exponential linear unit", avoids a vanishing 
 
 ![](images/elu_vs_relu.png)
 
-**Figure 1**: `ELU` vs. `ReLU` activation functions
+**Figure 3**: `ELU` vs. `ReLU` activation functions
 
 The `softmax` function highlights the largest values and suppresses values which are significantly below the maximum value. The function normalizes the distribution of the predictions, so that they can be directly treated as probabilities.
 
@@ -200,35 +209,25 @@ model.compile(loss='categorical_crossentropy',
 
 ![](images/architecture.png)
 
- **Figure 2**: AlexNet style CNN architecture
+ **Figure 4**: AlexNet style CNN architecture
  
 ## Hydrocarbon Training and Performance <a name="hcmodel"></a>
 
 ### Training <a name="hctrain"></a>
 
-In order to create a model with appropriately tuned hyperparameters, I started training on a smaller dataset; the initial training set had 2,028 classes, specifically chosen due to the simplicity of the structures. For each of the 3 classes, I used the image augmentation parameters outlined in **Parameters 1** to train on 250 batch images per class. **Figure 3** shows samples of an image augmented using the easier training parameters.
-
-![](images/easy.gif)
-
- **Figure 3**: Sample molecule augmented using easier training parameters
-
-The accuracy and loss for this model can be seen in **Figure 4** and **Figure 5**.
+In order to create a model with appropriately tuned hyperparameters, I started training on a smaller dataset; the initial training set had 2,028 classes, specifically chosen due to the simplicity of the structures. For each of the 3 classes, I used the image augmentation parameters shown in **Figure 1** and **Parameters 1** to train on 250 batch images per class. The accuracy and loss for this model can be seen in **Figure 4** and **Figure 5**.
 
 ![](images/small_dataset_training/model_accuracy_1000.png)
 
- **Figure 4**: Model accuracy for hydrocarbon model trained using simpler augmentation parameters
+ **Figure 5**: Model accuracy for hydrocarbon model trained using simpler augmentation parameters
  
 ![](images/small_dataset_training/model_loss_1000.png)
 
- **Figure 5**: Model loss for hydrocarbon model trained using simpler augmentation parameters
+ **Figure 6**: Model loss for hydrocarbon model trained using simpler augmentation parameters
 
-Using the hyperparameters and weights from this training model, I started training using more difficult augmentation parameters. Since structural images are valid, even when they are flipped horizontally or vertically, the model must learn to reognize these changes. The augmented parameters can be seen in **Figure 6**.
+Using the hyperparameters and weights from this training model, I started training using more difficult augmentation parameters. Since structural images are valid, even when they are flipped horizontally or vertically, the model must learn to reognize these changes. The augmented parameters can be seen in **Figure 2** and **Parameters 2**.
 
-![](images/difficult.gif)
-
- **Figure 6**: Sample molecule augmented using easier training parameters
- 
-The accuracy and loss for this model can be seen in **Figure ** and **Figure **.
+The accuracy and loss for this model can be seen in **Figure 7** and **Figure 8**.
 
 ![](images/small_dataset_training/relu_250_acc_0001_flip.png)
 

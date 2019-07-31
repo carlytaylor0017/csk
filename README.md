@@ -7,15 +7,20 @@
     1. [Skeletal Formulas](#skeletal_formulas) 
     2. [Simplified Molecular-Input Line-Entry System (SMILES)](#SMILES)
     3. [Building a Scalable Database](#database)
-    4. [Small-Data Problem and Image Augmentation using Keras](#small-data)
+        1. [Hydrocarbon Dataset](#hc)
+        2. [Small-Chain Dataset](#sc)
 3. [Convolutional Neural Network Model](#cnn)
-    1. [Training Set](#train)
-    2. [Image Augmentation Parameters](#aug)
-    3. [Model Hyperparameters](#hp)
-    4. [Model Architecture](#architecture)
-    5. [Training](#train)
-    6. [Performance and Predictions](#train)
-
+    1. [Small-Data Problem and Image Augmentation using Keras](#small-data)
+        1. [Image Augmentation Parameters](#aug)
+    2. [Model Hyperparameters](#hp)
+    3. [Model Architecture](#architecture)
+4. [Hydrocarbon Training and Performance](#hcmodel)
+    1. [Training](#hctrain)
+    2. [Performance and Predictions](#hcperform)
+5. [Small-Chain Training and Performance](#scmodel)
+    1. [Training](#sctrain)
+    2. [Performance and Predictions](#scperform)
+    
 ## Question <a name="Question"></a>
 
 Can I build a model that can correctly classify images of chemical structures?
@@ -50,11 +55,17 @@ SMILES strings use atoms and bond symbols to describe physical properties of che
 
 Perhaps the most important property of SMILES, as it relates to data science, is that the datatype is quite compact. SMILES structures average around 1.6 bytes per atom, compared to skeletal image files, which have an averge size of 4.0 kilobytes.
 
-## Building a Scalable Database <a name="database"></a>
+### Building a Scalable Dataset <a name="database"></a>
 
-Since all chemical structures are unique, this means that there is only one correct way to represent every chemical species. This presents an interesting problem when trying to train a neural network to predict the name of a structure - by convention the datasets are going to be sparse. The [dataset](https://github.com/cwolfbrandt/csk_database/edit/master/README.md) has 9,691 rows, each with a unique name and link to a 300 x 300 pixel structural image, as shown in **Table 1**.
+Since all chemical structures are unique, this means that there is only one correct way to represent every chemical species. This presents an interesting problem when trying to train a neural network to predict the name of a structure - by convention the datasets are going to be sparse. 
 
-**Table 1**: Sample rows from the dataset
+#### Hydrocarbon Dataset <a name="hc"></a>
+
+#### Small-Chain Dataset <a name="sc"></a>
+
+The [dataset](https://github.com/cwolfbrandt/csk_database/edit/master/README.md) has 9,691 rows, each with a unique name and link to a 300 x 300 pixel structural image, as shown in **Table 1**.
+
+**Table 3**: Sample rows from the dataset
 
 | SMILES      | Image URL | Skeletal Formula | 
 | :-----------: |:-----------: | :-----------: |
@@ -76,7 +87,7 @@ It is true that deep-learning does usually require large amounts of training dat
 
 In order to make the most of the small dataset, more images must be generated. In Keras this can be done via the `keras.preprocessing.image.ImageDataGenerator` class. This method is used to augment each image, generating a new image that has been randomly transformed. This ensures that the model should never see the same picture twice, which helps prevent overfitting and helps the model generalize better.
 
-### Image Augmentation Parameters  <a name="aug"></a>
+#### Image Augmentation Parameters  <a name="aug"></a>
 
 Keras allows for many image augmentation parameters which can be found [here](https://keras.io/preprocessing/image/). The parameters used, both for initial model building and for the final architecture, are described below: 
 
@@ -95,12 +106,12 @@ fill_mode = points nearest the outside the boundaries of the input are filled by
 When creating the initial small dataset for model building, the following image augmentation parameters were used:
 
 ```
-rotation_range=40
-width_shift_range=0.1
-height_shift_range=0.1
+rotation_range=10
+width_shift_range=0.01
+height_shift_range=0.01
 rescale=1./255
-shear_range=0.1
-zoom_range=0.1
+shear_range=0.01
+zoom_range=0.01
 horizontal_flip=False
 vertical_flip=False
 fill_mode='nearest'
@@ -108,7 +119,7 @@ fill_mode='nearest'
 **Parameters 1**: Initial set of image augmentation parameters for training.
 
 ```
-rotation_range=50
+rotation_range=40
 width_shift_range=0.2
 height_shift_range=0.2
 rescale=1./255
@@ -118,7 +129,7 @@ horizontal_flip=True
 vertical_flip=True
 fill_mode='nearest'
 ```
-**Parameters 2**: Initial set of image augmentation parameters for training.
+**Parameters 2**: Final set of image augmentation parameters for training.
 
 ### Model Hyperparameters  <a name="hp"></a>
 
@@ -187,51 +198,47 @@ model.compile(loss='categorical_crossentropy',
                metrics=['accuracy'])
 ```
 
-### Training and Performance <a name="train"></a>
+![](images/nn.jpg)
 
-In order to create a model with appropriately tuned hyperparameters, I started training on a small dataset; the initial training set had 3 classes, specifically chosen to have vastly different features. For each of the 3 classes, I used the image augmentation parameters outlined in **Parameters 2** to create 100 training images per class. **Table 2** shows the initial 3 classes chosen for training and samples of the augmented images.
+ **Figure 2**: AlexNet style CNN architecture
+ 
+## Hydrocarbon Training and Performance <a name="hcmodel"></a>
 
-**Table 2**: Simple augmented images using Keras
+### Training <a name="hctrain"></a>
 
-| Structural Image      | Augmented Image Example 1 | Augmented Image Example 2 | Augmented Image Example 3 |
-| :-----------: | :-----------:| :-----------: | :----------:| 
-| ![](images/494155/494155.png)| ![](images/494155/_0_22.png) | ![](images/494155/_0_7483.png) |   ![](images/494155/_0_872.png) |
-| ![](images/497397/497397.png)| ![](images/497397/_0_5840.png) | ![](images/497397/_0_7180.png) |   ![](images/497397/_0_998.png) |
-| ![](images/478708/478708.png)| ![](images/478708/_0_6635.png) | ![](images/478708/_0_6801.png) |   ![](images/478708/_0_980.png) |
+In order to create a model with appropriately tuned hyperparameters, I started training on a smaller dataset; the initial training set had 2,028 classes, specifically chosen due to the simplicity of the structures. For each of the 3 classes, I used the image augmentation parameters outlined in **Parameters 1** to train on 250 batch images per class. **Figure 3** shows samples of an image augmented using the easier training parameters.
 
-Using the weights and hyperparameters for the 3 class training model, I started training the 1,458 class model. Initially, I continued using the simpler augmentation parameters. This allowed me to generate and save model weights, with the intention of eventually increasing the difficulty of the training set. The accuracy and loss for this model can be seen in **Figure 2** and **Figure 3**.
+![](images/easy.gif)
 
-![](images/6_layer_accuracy.png)
-
-**Figure 2**: Model accuracy for model trained using simpler augmentation parameters.
-
-![](images/6_layer_loss.png)
-
-**Figure 3**: Model loss for model trained using simpler augmentation parameters.
-
-I was finally able to increase the difficulty of the training set, using the augmentation parameters outlined in **Parameters 1**. As shown in **Table 3**, not only are there many images that are very similar to one another, the rotation and flipping of the augmented images increases the complexity of the dataset immensely. 
-
-**Table 3**: Complex augmented images using Keras and more difficult augmentation parameters
-
-| Structural Image      | Augmented Image Example 1 | Augmented Image Example 2 |
-| :-----------: | :-----------:| :-----------: | 
-| ![](images/flip_images/492379/492379.png)| ![](images/flip_images/492379/_0_9179.png) | ![](images/flip_images/492379/_0_82.png) | 
-| ![](images/flip_images/504270/504270.png)| ![](images/flip_images/504270/_0_569.png) | ![](images/flip_images/504270/_0_8840.png) | 
-| ![](images/flip_images/516411/516411.png)| ![](images/flip_images/516411/_0_3425.png) | ![](images/flip_images/516411/_0_5024.png) | 
-| ![](images/flip_images/529978/529978.png)|![](images/flip_images/529978/_0_6933.png) | ![](images/flip_images/529978/_0_7646.png) | 
+ **Figure 3**: Sample molecule augmented using easier training parameters
 
 The accuracy and loss for this model can be seen in **Figure 4** and **Figure 5**.
 
+![](images/small_dataset_training/model_accuracy_1000.png)
+
+ **Figure 4**: Model accuracy for hydrocarbon model trained using simpler augmentation parameters
+ 
+![](images/small_dataset_training/model_loss_1000.png)
+
+ **Figure 5**: Model loss for hydrocarbon model trained using simpler augmentation parameters
+
+Using the hyperparameters and weights from this training model, I started training using more difficult augmentation parameters. Since structural images are valid, even when they are flipped horizontally or vertically, the model must learn to reognize these changes. The augmented parameters can be seen in **Figure 6**.
+
+![](images/difficult.gif)
+
+ **Figure 6**: Sample molecule augmented using easier training parameters
+ 
+The accuracy and loss for this model can be seen in **Figure ** and **Figure **.
+
 ![](images/relu_250_acc_0001_flip.png)
 
-**Figure 4**: Model accuracy for model trained using wider augmentation parameters (including horizontal flipping).
+**Figure 7**: Model accuracy for model trained using wider augmentation parameters (including horizontal/vertical flipping)
 
 ![](images/relu_250_loss_0001_flip.png)
 
-**Figure 5**: Model loss for model trained using wider augmentation parameters (including horizontal flipping).
+**Figure 8**: Model loss for model trained using wider augmentation parameters (including horizontal/vertical flipping)
 
-While it is far from perfect, this model can predict the correct class for any molecule with upwards of 80% accuracy. Given the limitations of the datase, this is well beyond the bounds of what was expected and is a pleasant surprise.
-
+### Performance and Predictions <a name="hcperform"></a>
 
 | Image to Predict | Prediction 1 |  Confidence | Prediction 2 |  Confidence | Prediction 3 |  Confidence |
 |:----------------:|:-----------------:|:-----------:|:-----------------:|:-----------:|:----------------:|:-----------:|
@@ -240,3 +247,23 @@ While it is far from perfect, this model can predict the correct class for any m
 | ![](images/model_test_images/CCCCCCCCCCCCCc1ccccc1/_0_3361.png)|![](images/model_test_images/CCCCCCCCCc1ccc(cc1)-c1ccccc1/CCCCCCCCCc1ccc(cc1)-c1ccccc1.png)| 70.5 |![](images/model_test_images/CCCCCCCCCCCCCc1ccccc1/CCCCCCCCCCCCCc1ccccc1.png)  |  **26.9** |![](images/model_test_images/triplebond2/triplebond2.png)|  1.7 |
 | ![](images/model_test_images/CCCCCCCCCCCCc1ccccc1/_0_3080.png) |![](images/model_test_images/CCCCCCCCc1ccccc1/CCCCCCCCc1ccccc1.png)| 62.7 | ![](images/model_test_images/CCCCCCCCCCCCc1ccccc1/CCCCCCCCCCCCc1ccccc1.png) |  **23.1**  | ![](images/model_test_images/C=CCCCCCCc1ccccc1/C=CCCCCCCc1ccccc1.png)  | 3.5 |
 | ![](images/model_test_images/Cc1cccc(C)c1CCC=C/_0_802.png)  | ![](images/model_test_images/Cc1cccc(C)c1CCC=C/Cc1cccc(C)c1CCC=C.png) | **85.7** | ![](images/model_test_images/single1/single1.png)| 11.0 | ![](images/model_test_images/triplebond3/triplebond3.png) | 1.2 |
+
+## Small-Chain Training and Performance <a name="scmodel"></a>
+
+### Training <a name="sctrain"></a>
+
+Using the hyperparameters for the 2,028 class training model, I started training the 9,691 class model. Initially, I continued using the simpler augmentation parameters. This allowed me to generate and save model weights, with the intention of eventually increasing the difficulty of the training set. The accuracy and loss for this model can be seen in **Figure ** and **Figure **.
+
+![](images/6_layer_accuracy.png)
+
+**Figure **: Model accuracy for full model trained using simpler augmentation parameters
+
+![](images/6_layer_loss.png)
+
+**Figure **: Model loss for full model trained using simpler augmentation parameters
+
+I was finally able to increase the difficulty of the training set, using the augmentation parameters outlined in **Parameters 1**. As shown in **Table 5**, not only are there many images that are very similar to one another, the rotation and flipping of the augmented images increases the complexity of the dataset immensely. 
+
+While it is far from perfect, this model can predict the correct class for any molecule with upwards of 80% accuracy. Given the limitations of the datase, this is well beyond the bounds of what was expected and is a pleasant surprise.
+
+### Performance and Predictions <a name="hcperform"></a>

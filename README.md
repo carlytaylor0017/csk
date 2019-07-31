@@ -6,7 +6,7 @@
 2. [Introduction](#Introduction)
     1. [Skeletal Formulas](#skeletal_formulas) 
     2. [Simplified Molecular-Input Line-Entry System (SMILES)](#SMILES)
-    3. [Building a Scalable Database](#database)
+    3. [Building Datasets](#database)
         1. [Hydrocarbon Dataset](#hc)
         2. [Small-Chain Dataset](#sc)
 3. [Convolutional Neural Network Model](#cnn)
@@ -20,6 +20,9 @@
 5. [Small-Chain Training and Performance](#scmodel)
     1. [Training](#sctrain)
     2. [Performance and Predictions](#scperform)
+6. [Future Work](#future)
+    1. [Generative Adversarial Network](#gan)
+    2. [Generated Images](#images)
     
 ## Question <a name="Question"></a>
 
@@ -55,7 +58,7 @@ SMILES strings use atoms and bond symbols to describe physical properties of che
 
 Perhaps the most important property of SMILES, as it relates to data science, is that the datatype is quite compact. SMILES structures average around 1.6 bytes per atom, compared to skeletal image files, which have an averge size of 4.0 kilobytes.
 
-### Building a Scalable Dataset <a name="database"></a>
+### Building Datasets <a name="database"></a>
 
 Since all chemical structures are unique, this means that there is only one correct way to represent every chemical species. This presents an interesting problem when trying to train a neural network to predict the name of a structure - by convention the datasets are going to be sparse. 
 
@@ -275,3 +278,10 @@ I was finally able to increase the difficulty of the training set, using the aug
 While it is far from perfect, this model can predict the correct class for any molecule with upwards of 80% accuracy. Given the limitations of the datase, this is well beyond the bounds of what was expected and is a pleasant surprise.
 
 ### Performance and Predictions <a name="hcperform"></a>
+
+## Future Work <a name="future"></a>
+
+### Generative Adversarial Network <a name="gan"></a>
+
+### Generated Images <a name="images"></a>
+

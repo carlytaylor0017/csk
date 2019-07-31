@@ -198,7 +198,7 @@ model.compile(loss='categorical_crossentropy',
                metrics=['accuracy'])
 ```
 
-![](images/nn.jpg)
+![](images/architecture.png)
 
  **Figure 2**: AlexNet style CNN architecture
  
@@ -252,17 +252,17 @@ The accuracy and loss for this model can be seen in **Figure ** and **Figure **.
 
 ### Training <a name="sctrain"></a>
 
-Using the hyperparameters for the 2,028 class training model, I started training the 9,691 class model. Initially, I continued using the simpler augmentation parameters. This allowed me to generate and save model weights, with the intention of eventually increasing the difficulty of the training set. The accuracy and loss for this model can be seen in **Figure ** and **Figure **.
+Using the hyperparameters for the 2,028 class training model, I started training the 9,691 class model. Initially, I continued using the simpler augmentation parameters. This allowed me to generate and save model weights, with the intention of eventually increasing the difficulty of the training set. The accuracy and loss for this model can be seen in **Figure 9** and **Figure 10**.
 
 ![](images/6_layer_accuracy.png)
 
-**Figure **: Model accuracy for full model trained using simpler augmentation parameters
+**Figure 9**: Model accuracy for full model trained using simpler augmentation parameters
 
 ![](images/6_layer_loss.png)
 
-**Figure **: Model loss for full model trained using simpler augmentation parameters
+**Figure 10**: Model loss for full model trained using simpler augmentation parameters
 
-I was finally able to increase the difficulty of the training set, using the augmentation parameters outlined in **Parameters 1**. As shown in **Table 5**, not only are there many images that are very similar to one another, the rotation and flipping of the augmented images increases the complexity of the dataset immensely. 
+I was finally able to increase the difficulty of the training set, using the augmentation parameters outlined in **Parameters 1**. 
 
 While it is far from perfect, this model can predict the correct class for any molecule with upwards of 80% accuracy. Given the limitations of the datase, this is well beyond the bounds of what was expected and is a pleasant surprise.
 

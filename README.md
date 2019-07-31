@@ -264,11 +264,11 @@ Using the hyperparameters for the 2,028 class training model, I started training
 
 I was finally able to increase the difficulty of the training set, using the augmentation parameters outlined in **Parameters 1**. 
 
-![](images/6_layer_accuracy_higheraug.png)
+![](images/model_images/6_layer_64_filter_acc.png)
 
 **Figure 11**: Model accuracy for model trained using wider augmentation parameters (including horizontal/vertical flipping)
 
-![](images/6_layer_jloss_higheraug.png)
+![](images/model_images/6_layer_64_filter_loss.png)
 
 **Figure 12**: Model loss for model trained using wider augmentation parameters (including horizontal/vertical flipping)
 

@@ -230,11 +230,11 @@ Using the hyperparameters and weights from this training model, I started traini
  
 The accuracy and loss for this model can be seen in **Figure ** and **Figure **.
 
-![](images/relu_250_acc_0001_flip.png)
+![](images/small_dataset_training/relu_250_acc_0001_flip.png)
 
 **Figure 7**: Model accuracy for model trained using wider augmentation parameters (including horizontal/vertical flipping)
 
-![](images/relu_250_loss_0001_flip.png)
+![](images/small_dataset_training/relu_250_loss_0001_flip.png)
 
 **Figure 8**: Model loss for model trained using wider augmentation parameters (including horizontal/vertical flipping)
 
@@ -263,6 +263,14 @@ Using the hyperparameters for the 2,028 class training model, I started training
 **Figure 10**: Model loss for full model trained using simpler augmentation parameters
 
 I was finally able to increase the difficulty of the training set, using the augmentation parameters outlined in **Parameters 1**. 
+
+![](images/6_layer_accuracy_higheraug.png)
+
+**Figure 11**: Model accuracy for model trained using wider augmentation parameters (including horizontal/vertical flipping)
+
+![](images/6_layer_jloss_higheraug.png)
+
+**Figure 12**: Model loss for model trained using wider augmentation parameters (including horizontal/vertical flipping)
 
 While it is far from perfect, this model can predict the correct class for any molecule with upwards of 80% accuracy. Given the limitations of the datase, this is well beyond the bounds of what was expected and is a pleasant surprise.
 

@@ -64,7 +64,7 @@ Since all chemical structures are unique, this means that there is only one corr
 
 #### Hydrocarbon Dataset <a name="hc"></a>
 
-The [dataset](https://github.com/cwolfbrandt/csk_database/edit/master/README.md) has 2,028 rows, each with a unique name and link to a 300 x 300 pixel structural image, as shown in **Table 1**.
+The [dataset](https://github.com/cwolfbrandt/csk_database/edit/master/README.md) has 2,028 rows, each with a unique name and link to a 300 x 300 pixel structural image, as shown in **Table 3**.
 
 **Table 3**: Sample rows from the dataset
 
@@ -77,7 +77,6 @@ The [dataset](https://github.com/cwolfbrandt/csk_database/edit/master/README.md)
 Generating the image URLs required URL encoding the SMILES strings, since the strings can contain characters which are not safe for URLs. This had the added benefit of making the SMILES strings safe for filenames as well. The final training dataset was in a directory architected based on [this blog post from the Keras website](https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html), where the filenames are URL encoded SMILES strings.
 
 #### Small-Chain Dataset <a name="sc"></a>
-
 
 ## Convolutional Neural Network Model <a name="cnn"></a>
 
@@ -159,7 +158,7 @@ The `categorical crossentropy` loss function is used for single label categoriza
 
 The `Adam` optimization algorithm is different to classical stochastic gradient descent, where gradient descent maintains a single learning rate for all weight updates. Specifically, the `Adam` algorithm calculates an exponential moving average of the gradient and the squared gradient, and the parameters beta1 and beta2 control the decay rates of these moving averages.
 
-The `ELU` activation function, or "exponential linear unit", avoids a vanishing gradient similar to `ReLUs`, but `ELUs` have improved learning characteristics compared to the other activation functions. In contrast to `ReLUs`, `ELUs` don't have a slope of 0 for negative values. This allows the `ELU` function to push mean unit activations closer to zero; zero means speed up learning because they bring the gradient closer to the unit natural gradient. A comparison between `ReLU` and `ELU` activation functions can be seen in **Figure 1**.
+The `ELU` activation function, or "exponential linear unit", avoids a vanishing gradient similar to `ReLUs`, but `ELUs` have improved learning characteristics compared to the other activation functions. In contrast to `ReLUs`, `ELUs` don't have a slope of 0 for negative values. This allows the `ELU` function to push mean unit activations closer to zero; zero means speed up learning because they bring the gradient closer to the unit natural gradient. A comparison between `ReLU` and `ELU` activation functions can be seen in **Figure 3**.
 
 ![](images/elu_vs_relu.png)
 

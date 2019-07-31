@@ -61,19 +61,20 @@ Since all chemical structures are unique, this means that there is only one corr
 
 #### Hydrocarbon Dataset <a name="hc"></a>
 
-#### Small-Chain Dataset <a name="sc"></a>
-
-The [dataset](https://github.com/cwolfbrandt/csk_database/edit/master/README.md) has 9,691 rows, each with a unique name and link to a 300 x 300 pixel structural image, as shown in **Table 1**.
+The [dataset](https://github.com/cwolfbrandt/csk_database/edit/master/README.md) has 2,028 rows, each with a unique name and link to a 300 x 300 pixel structural image, as shown in **Table 1**.
 
 **Table 3**: Sample rows from the dataset
 
-| SMILES      | Image URL | Skeletal Formula | 
-| :-----------: |:-----------: | :-----------: |
-|C=CCC1(CC=C)c2ccccc2-c2ccccc12| https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/C=CCC1(CC=C)c2ccccc2-c2ccccc12/PNG | ![](images/313754005.png)|
-|Cc1ccc(C=C)c2ccccc12| https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/Cc1ccc(C=C)c2ccccc12/PNG |![](images/313870557.png)|
-|Cc1ccccc1\C=C\c1ccccc1	|  https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/Cc1ccccc1\C=C\c1ccccc1/PNG | ![](images/32717.png)| 
+| SMILES      | Image URL | 
+| :-----------: |:-----------: | 
+|C=CCC1(CC=C)c2ccccc2-c2ccccc12| https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/C=CCC1(CC=C)c2ccccc2-c2ccccc12/PNG |
+|Cc1ccc(C=C)c2ccccc12| https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/Cc1ccc(C=C)c2ccccc12/PNG |
+|Cc1ccccc1\C=C\c1ccccc1	|  https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/Cc1ccccc1\C=C\c1ccccc1/PNG | 
 
 Generating the image URLs required URL encoding the SMILES strings, since the strings can contain characters which are not safe for URLs. This had the added benefit of making the SMILES strings safe for filenames as well. The final training dataset was in a directory architected based on [this blog post from the Keras website](https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html), where the filenames are URL encoded SMILES strings.
+
+#### Small-Chain Dataset <a name="sc"></a>
+
 
 ## Convolutional Neural Network Model <a name="cnn"></a>
 
@@ -215,7 +216,7 @@ model.compile(loss='categorical_crossentropy',
 
 ### Training <a name="hctrain"></a>
 
-In order to create a model with appropriately tuned hyperparameters, I started training on a smaller dataset; the initial training set had 2,028 classes, specifically chosen due to the simplicity of the structures. For each of the 3 classes, I used the image augmentation parameters shown in **Figure 1** and **Parameters 1** to train on 250 batch images per class. The accuracy and loss for this model can be seen in **Figure 4** and **Figure 5**.
+In order to create a model with appropriately tuned hyperparameters, I started training on a smaller dataset; the initial training set had 2,028 classes, specifically chosen due to the simplicity of the structures. For each of the 2,028 classes, I used the image augmentation parameters shown in **Figure 1** and **Parameters 1** to train on 250 batch images per class. The accuracy and loss for this model can be seen in **Figure 4** and **Figure 5**.
 
 ![](images/small_dataset_training/model_accuracy_1000.png)
 

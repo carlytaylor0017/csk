@@ -287,19 +287,33 @@ Thanks to the Keras team for this Wasserstein Generative Adversarial Network (WG
 The code is described as follows:
 
 ```
-This implementation of the improved WGAN described [here](https://arxiv.org/abs/1704.00028) has a term in the loss function which penalizes the network if its gradient norm moves away from 1. This is included because the Earth Mover (EM) distance used in WGANs is only easy to calculate for 1-Lipschitz functions (i.e. functions where the gradient norm has a constant upper bound of 1). The original WGAN paper enforced this by clipping weights to very small values [-0.01, 0.01]. However, this drastically reduced network capacity. Penalizing the gradient norm is more natural, but this requires second-order gradients. These are not supported for some tensorflow ops (particularly MaxPool and AveragePool) in the current
-release (1.0.x), but they are supported in the current nightly builds (1.1.0-rc1 and higher). To avoid this, this model uses strided convolutions instead of Average/Maxpooling for downsampling.
+This implementation of the improved WGAN described [here](https://arxiv.org/abs/1704.00028) has a term in the loss function
+which penalizes the network if its gradient norm moves away from 1. This is included because the Earth Mover (EM) distance
+used in WGANs is only easy to calculate for 1-Lipschitz functions (i.e. functions where the gradient norm has a constant
+upper bound of 1). The original WGAN paper enforced this by clipping weights to very small values [-0.01, 0.01]. However,
+this drastically reduced network capacity. Penalizing the gradient norm is more natural, but this requires second-order
+gradients. These are not supported for some tensorflow ops (particularly MaxPool and AveragePool) in the current
+release (1.0.x), but they are supported in the current nightly builds (1.1.0-rc1 and higher). To avoid this, this model uses
+strided convolutions instead of Average/Maxpooling for downsampling.
 ```
 Furthermore, the loss function in a WGAN is not a normal `sigmoid` output, constrained to [0, 1] and representing the probability that the samples are either real or generated. It is actually a Wasserstein loss function, where the output is linear (so no activation function) and the discriminator wants to make the distance between its output for real and generated samples as large as possible. The easiest way to achieve this is to constrain the output to [-1, 1], where generated samples are -1 and real samples are 1. This means that multiplying the outputs by the labels will yield the loss directly.
 
 Perhaps the most important part of a WGAN is the gradient penalty loss. The authors of this code describe it very succinctly:
 
 ```
-In Improved WGANs, the 1-Lipschitz constraint is enforced by adding a term to the loss function that penalizes the network if the gradient norm moves away from 1. However, it is impossible to evaluate this function at all points in the input space. The compromise used in the paper is to choose random points on the lines between real and generated samples, and check the gradients at these points. Note that it is the gradient w.r.t. the input averaged samples, not the weights of the discriminator, that we're penalizing!
+In Improved WGANs, the 1-Lipschitz constraint is enforced by adding a term to the loss function that penalizes the network if
+the gradient norm moves away from 1. However, it is impossible to evaluate this function at all points in the input space.
+The compromise used in the paper is to choose random points on the lines between real and generated samples, and check the
+gradients at these points. Note that it is the gradient w.r.t. the input averaged samples, not the weights of the
+discriminator, that we're penalizing!
 
-In order to evaluate the gradients, we must first run samples through the generator and evaluate the loss. Then we get the gradients of the discriminator w.r.t. the input averaged samples. The l2 norm and penalty can then be calculated for this gradient.
+In order to evaluate the gradients, we must first run samples through the generator and evaluate the loss. Then we get the
+gradients of the discriminator w.r.t. the input averaged samples. The l2 norm and penalty can then be calculated for this
+gradient.
     
-Note that this loss function requires the original averaged samples as input, but Keras only supports passing y_true and y_pred to loss functions. To get around this, we make a partial() of the function with the averaged_samples argument, and use that for model training.
+Note that this loss function requires the original averaged samples as input, but Keras only supports passing y_true and
+y_pred to loss functions. To get around this, we make a partial() of the function with the averaged_samples argument, and use
+that for model training.
 ```
 
 ### Generated Images <a name="images"></a>

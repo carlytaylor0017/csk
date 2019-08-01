@@ -320,5 +320,5 @@ that for model training.
 
 ### Generated Images <a name="images"></a>
 
-![](images/6_layer_accuracy.png)
+![](images/gan_train.png)
 

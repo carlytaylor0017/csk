@@ -278,7 +278,7 @@ Using the hyperparameters for the 2,028 class training model, I started training
 
 **Figure 10**: Model loss for full model trained using simpler augmentation parameters
 
-I was finally able to increase the difficulty of the training set, using the augmentation parameters outlined in **Parameters 1**. 
+I was finally able to increase the difficulty of the training set, using the augmentation parameters outlined in **Parameters 2**. 
 
 ![](images/model_images/6_layer_64_filter_acc.png)
 

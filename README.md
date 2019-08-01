@@ -284,6 +284,10 @@ While it is far from perfect, this model can predict the correct class for any m
 
 ## Future Work <a name="future"></a>
 
+Many of the difficulties with training my CNN could have been avoided had my dataset been larger. While the above process works, and the model has satisfactory results (can predict an image name with around 80% accuracy), the model is not generalizable. In particular, the model does not perform well (or at all) with hand-drawn structures.
+
+In order to create a larger dataset, I have been attempting to train a generative adversarial network (GAN) to generate images and expand my hydrocarbon dataset.
+
 ### Generative Adversarial Network <a name="gan"></a>
 
 Thanks to the Keras team for this Wasserstein Generative Adversarial Network (WGAN) code, which can be found [here](https://github.com/keras-team/keras-contrib/blob/master/examples/improved_wgan.py).

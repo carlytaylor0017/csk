@@ -68,7 +68,7 @@ Since all chemical structures are unique, this means that there is only one corr
 
 The [dataset](https://github.com/cwolfbrandt/csk_database/edit/master/README.md) has 2,028 rows, each with a unique name and link to a 300 x 300 pixel structural image, as shown in **Table 3**.
 
-**Table 3**: Sample rows from the dataset
+**Table 3**: Sample rows from the hydrocarbon dataset
 
 | SMILES      | Image URL | 
 | :-----------: |:-----------: | 
@@ -79,6 +79,16 @@ The [dataset](https://github.com/cwolfbrandt/csk_database/edit/master/README.md)
 Generating the image URLs required URL encoding the SMILES strings, since the strings can contain characters which are not safe for URLs. This had the added benefit of making the SMILES strings safe for filenames as well. The final training dataset was in a directory architected based on [this blog post from the Keras website](https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html), where the filenames are URL encoded SMILES strings.
 
 #### Small-Chain Dataset <a name="sc"></a>
+
+This dataset has 9,691 rows, each with a unique name and link to a 300 x 300 pixel structural image, as shown in **Table 4**. It includes all of the classes from the hydrocarbon dataset, as well as new short-chain images which can include substituent atoms, such as oxygen and nitrogen.
+
+**Table 4**: Sample rows from the small-chain dataset
+
+| SMILES      | Image URL | 
+| :-----------: |:-----------: | 
+|IC1CCCOCC1| https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/IC1CCCOCC1/PNG |
+|NC12CC1COC2| https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/NC12CC1COC2/PNG |
+|NCCCCC=C|  https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/NCCCCC%3DC/PNG | 
 
 ## Convolutional Neural Network Model <a name="cnn"></a>
 
@@ -244,7 +254,7 @@ The accuracy and loss for this model can be seen in **Figure 7** and **Figure 8*
 
 ### Performance and Predictions <a name="hcperform"></a>
 
-**Table 4**: Sample predictions from hydrocarbon model
+**Table 5**: Sample predictions from hydrocarbon model
 
 | Image to Predict | Prediction 1 |  Confidence | Prediction 2 |  Confidence | Prediction 3 |  Confidence |
 |:----------------:|:-----------------:|:-----------:|:-----------------:|:-----------:|:----------------:|:-----------:|

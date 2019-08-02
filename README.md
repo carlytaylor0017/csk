@@ -294,8 +294,8 @@ While it is far from perfect, this model can predict the correct class for any m
 
 | Image to Predict | Prediction 1 |  Percent | Prediction 2 |  Percent | Prediction 3 |  Percent |
 |:--------------|:---------------|------------:|:------------------------|------------:|:---------------|------------:|
-| ![](images/full1/full1.png) |![](images/full1/full1.png)  |     **96.4** | ![](images/C%3DCCc1ccc%28Cc2ccccc2%29cc1.png) |    0.80 | ![](images/CCCCNCCO.png) |    0.30 |
-| ![](images/C1CNCCN1/C1CNCCN1.png)  |  ![](images/NNC1%3DCOCC1.png)  |     22.3 |  ![](images/Cn1ccc%28O%29c1.png)|   14.9   |![](images/CNNC1COCC1C.png)   |    7.71  |
+| ![](images/full1/full1.png) |![](images/full1/full1.png)  |     **96.4** | ![](images/full2.png) |    0.80 | ![](images/CCCCNCCO.png) |    0.30 |
+| ![](images/C1CNCCN1/C1CNCCN1.png)  |  ![](images/full3.png)  |     22.3 |  ![](images/full4.png)|   14.9   |![](images/CNNC1COCC1C.png)   |    7.71  |
 |  ![](images/C1OC11COC1/C1OC11COC1.png)| ![](images/O%3DCC1CNCCO1.png) |     22.0 |  ![](images/C1OC11COC1/C1OC11COC1.png) |   **21.4**   | ![](images/c1ccncc1.png)  |   15.3   |
 
 ## Future Work <a name="future"></a>

@@ -292,6 +292,12 @@ While it is far from perfect, this model can predict the correct class for any m
 
 ### Performance and Predictions <a name="hcperform"></a>
 
+|    | Filename      | Prediction 1   |   Percent 1 | Prediction 2            |   Percent 2 | Prediction 3   |   Percent 3 |
+|---:|:--------------|:---------------|------------:|:------------------------|------------:|:---------------|------------:|
+|  0 | C#CCCC1CNC1 | C#CCCC1CNC1    |     **96.4** | C=CCc1ccc(Cc2ccccc2)cc1 |    0.80 | CCCCNCCO       |    0.30 |
+|  1 | C1CNCCN1      | NNC1=COCC1     |     22.3 | Cn1ccc(O)c1             |   14.9   | CNNC1COCC1C    |    7.71  |
+|  2 | C1OC11COC1    | O=CC1CNCCO1    |     22.0 | C1OC11COC1              |   **21.4**   | c1ccncc1       |   15.3   |
+
 ## Future Work <a name="future"></a>
 
 Many of the difficulties with training my CNN could have been avoided had my dataset been larger. While the above process works, and the model has satisfactory results (can predict an image name with around 80% accuracy), the model is not generalizable. In particular, the model does not perform well (or at all) with hand-drawn structures.

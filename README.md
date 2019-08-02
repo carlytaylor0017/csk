@@ -292,6 +292,8 @@ While it is far from perfect, this model can predict the correct class for any m
 
 ### Performance and Predictions <a name="hcperform"></a>
 
+**Table 6**: Sample predictions from small-chain model
+
 | Image to Predict | Prediction 1 |  Percent | Prediction 2 |  Percent | Prediction 3 |  Percent |
 |:--------------|:---------------|------------:|:------------------------|------------:|:---------------|------------:|
 | ![](images/full1/full1.png) |![](images/full1/full1.png)  |     **96.4** | ![](images/full2.png) |    0.80 | ![](images/CCCCNCCO.png) |    0.30 |

@@ -256,7 +256,7 @@ The accuracy and loss for this model can be seen in **Figure 7** and **Figure 8*
 
 **Table 5**: Sample predictions from hydrocarbon model
 
-| Image to Predict | Prediction 1 |  Confidence | Prediction 2 |  Confidence | Prediction 3 |  Confidence |
+| Image to Predict | Prediction 1 |  Percent | Prediction 2 |  Percent | Prediction 3 |  Percent |
 |:----------------:|:-----------------:|:-----------:|:-----------------:|:-----------:|:----------------:|:-----------:|
 | ![](images/model_test_images/C=CCc1ccc(cc1)-c1ccc(CC=C)cc1/_0_1342.png)|![](images/model_test_images/C=CCc1ccc(cc1)-c1ccc(CC=C)cc1/C=CCc1ccc(cc1)-c1ccc(CC=C)cc1.png)| **97.4** | ![](images/model_test_images/triplebond1/triplebond1.png) |  1.1  |![](images/model_test_images/C1C(=CC=C1c1ccccc1)c1ccccc1/C1C(=CC=C1c1ccccc1)c1ccccc1.png) | 0.5 |
 | ![](images/model_test_images/CC(=C)Cc1ccccc1-c1ccccc1/_0_599.png)|![](images/model_test_images/CC=C(c1ccccc1)c1ccccc1/CC=C(c1ccccc1)c1ccccc1.png)| 61.6 |![](images/model_test_images/Cc1cc(C)c(\C=C\c2ccccc2C=C)c(C)c1/Cc1cc(C)c(\C=C\c2ccccc2C=C)c(C)c1.png) | 33.0 |![](images/model_test_images/CC(=C)Cc1ccccc1-c1ccccc1/CC(=C)Cc1ccccc1-c1ccccc1.png)| **1.4** |
@@ -292,11 +292,11 @@ While it is far from perfect, this model can predict the correct class for any m
 
 ### Performance and Predictions <a name="hcperform"></a>
 
-|    | Filename      | Prediction 1   |   Percent 1 | Prediction 2            |   Percent 2 | Prediction 3   |   Percent 3 |
-|---:|:--------------|:---------------|------------:|:------------------------|------------:|:---------------|------------:|
-|  0 | C#CCCC1CNC1 | C#CCCC1CNC1    |     **96.4** | C=CCc1ccc(Cc2ccccc2)cc1 |    0.80 | CCCCNCCO       |    0.30 |
-|  1 | C1CNCCN1      | NNC1=COCC1     |     22.3 | Cn1ccc(O)c1             |   14.9   | CNNC1COCC1C    |    7.71  |
-|  2 | C1OC11COC1    | O=CC1CNCCO1    |     22.0 | C1OC11COC1              |   **21.4**   | c1ccncc1       |   15.3   |
+| Image to Predict | Prediction 1 |  Percent | Prediction 2 |  Percent | Prediction 3 |  Percent |
+|:--------------|:---------------|------------:|:------------------------|------------:|:---------------|------------:|
+| ![](images/C%23CCCC1CNC1/C%23CCCC1CNC1.png) |![](images/C%23CCCC1CNC1/C%23CCCC1CNC1.png)  |     **96.4** | ![](images/C%3DCCc1ccc%28Cc2ccccc2%29cc1.png) |    0.80 | ![](images/CCCCNCCO.png) |    0.30 |
+| ![](images/C1CNCCN1/C1CNCCN1.png)  |  ![](images/NNC1%3DCOCC1.png)  |     22.3 |  ![](images/Cn1ccc%28O%29c1.png)|   14.9   |![](images/CNNC1COCC1C.png)   |    7.71  |
+|  ![](images/C1OC11COC1/C1OC11COC1.png)| ![](images/O%3DCC1CNCCO1.png) |     22.0 |  ![](images/C1OC11COC1/C1OC11COC1.png) |   **21.4**   | ![](images/c1ccncc1.png)  |   15.3   |
 
 ## Future Work <a name="future"></a>
 

@@ -1,4 +1,4 @@
-(https://https://cwolfbrandt.github.io)
+## [Return to Portfolio](https://https://cwolfbrandt.github.io)
 
 ![](images/background.jpg)
 

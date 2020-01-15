@@ -1,6 +1,3 @@
-# Deep learning for organic chemistry - utilizing deep learning techniques to identify chemical structures
-## Carly Wolfbrandt
-
 ![](images/background.jpg)
 
 ### Table of Contents
